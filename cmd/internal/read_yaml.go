@@ -20,19 +20,33 @@ func ReadYaml(path string) {
 
 	fmt.Println()
 
-	fmt.Printf("API,Path,Method\n")
+	fmt.Printf("Tag,API,Path,Method\n")
 	for k, v := range doc.Spec().Paths.Paths {
+		tag := "no Tag"
+
 		if v.Get != nil {
-			fmt.Printf("%s,%s,GET\n", k, v.Get.Summary)
+			if v.Get.Tags != nil {
+				tag = v.Get.Tags[0]
+			}
+			fmt.Printf("%s,%s,%s,GET\n", tag, k, v.Get.Summary)
 		}
 		if v.Post != nil {
-			fmt.Printf("%s,%s,POST\n", k, v.Post.Summary)
+			if v.Post.Tags != nil {
+				tag = v.Post.Tags[0]
+			}
+			fmt.Printf("%s,%s,%s,POST\n", tag, k, v.Post.Summary)
 		}
 		if v.Put != nil {
-			fmt.Printf("%s,%s,PUT\n", k, v.Put.Summary)
+			if v.Put.Tags != nil {
+				tag = v.Put.Tags[0]
+			}
+			fmt.Printf("%s,%s,%s,PUT\n", tag, k, v.Put.Summary)
 		}
 		if v.Delete != nil {
-			fmt.Printf("%s,%s,DELETE\n", k, v.Delete.Summary)
+			if v.Delete.Tags != nil {
+				tag = v.Delete.Tags[0]
+			}
+			fmt.Printf("%s,%s,%s,DELETE\n", tag, k, v.Delete.Summary)
 		}
 	}
 }
