@@ -1,6 +1,6 @@
 # convert-yaml-go
 
-Open API SpecからAPI名都パスを抽出するCLI
+Open API SpecからAPI名とパスを抽出するCLI
 
 ## Install
 
